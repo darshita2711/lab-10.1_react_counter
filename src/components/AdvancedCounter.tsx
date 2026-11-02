@@ -1,4 +1,4 @@
-import { useState , useEffect} from "react";
+import { useState, useEffect } from "react";
 
 function AdvancedCounter() {
 
@@ -15,16 +15,25 @@ function AdvancedCounter() {
     const [saveStatus, setSaveStatus] = useState<string>("Changes saved.");
 
     useEffect(() => {
-    const timer = setTimeout(() => {
-        localStorage.setItem("count", count.toString());
-        setSaveStatus("Changes saved.");
-    }, 500);
+        function handleKeyDown(event: KeyboardEvent) {
 
-    return () => {
-        clearTimeout(timer);
-    };
+            if (event.key === "ArrowUp") {
+                increment();
+            }
 
-    }, [count]);
+            if (event.key === "ArrowDown") {
+                decrement();
+            }
+
+        }
+
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+
+    }, [count, step]);
 
     // Increase count
     function increment() {
@@ -36,36 +45,36 @@ function AdvancedCounter() {
         ]);
     }
 
-        // Decrease count
-        function decrement() {
-            const newCount = count - step;
-            setCount(newCount);
+    // Decrease count
+    function decrement() {
+        const newCount = count - step;
+        setCount(newCount);
 
-            setHistory((previousHistory) => [
-                ...previousHistory,
-                newCount
-            ]);
-        }
+        setHistory((previousHistory) => [
+            ...previousHistory,
+            newCount
+        ]);
+    }
 
-        return (
-            <div>
-                <h1>Advanced Counter</h1>
+    return (
+        <div>
+            <h1>Advanced Counter</h1>
 
-                <h2>Current Count: {count}</h2>
+            <h2>Current Count: {count}</h2>
 
-                <button onClick={decrement}>Decrement</button>
+            <button onClick={decrement}>Decrement</button>
 
-                <button onClick={increment}>Increment</button>
-                <h3>Count History:</h3>
-                <ul>
+            <button onClick={increment}>Increment</button>
+            <h3>Count History:</h3>
+            <ul>
                 {history.map((value, index) => (
                     <li key={index}>{value}</li>
                 ))}
-                </ul>
-                <p>{saveStatus}</p>
+            </ul>
+            <p>{saveStatus}</p>
 
-            </div>
-        );
-    }
+        </div>
+    );
+}
 
-    export default AdvancedCounter;
+export default AdvancedCounter;
