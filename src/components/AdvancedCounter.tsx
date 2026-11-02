@@ -3,7 +3,11 @@ import { useState, useEffect } from "react";
 function AdvancedCounter() {
 
     // Current counter value
-    const [count, setCount] = useState<number>(0);
+    const [count, setCount] = useState<number>(() => {
+  const savedCount = localStorage.getItem("count");
+
+  return savedCount !== null ? Number(savedCount) : 0;
+});
 
     // Store count history
     const [history, setHistory] = useState<number[]>([0]);
@@ -60,10 +64,10 @@ function AdvancedCounter() {
         setHistory([0]);
     }
     return (
-        <div>
+        <div className="counter-container">
             <h1>Advanced Counter</h1>
 
-            <h2>Current Count: {count}</h2>
+            <h2 className="count-display">Current Count: {count}</h2>
 
             <button onClick={decrement}>Decrement</button>
 
