@@ -1,32 +1,48 @@
-# React + TypeScript + Vite
+# React Counter with useEffect
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## Project Description
 
-Currently, two official plugins are available:
+This project is an Advanced Counter application built using React and TypeScript.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+It demonstrates how to use React Hooks, including useState and useEffect, to manage state and handle side effects.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Increment and decrement counter
+- Track count history
+- Automatically save count using localStorage
+- Restore saved count after refreshing the page
+- Keyboard controls using ArrowUp and ArrowDown
+- Reset counter and history
+- Custom step value
 
-## Expanding the Oxlint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- React
+- TypeScript
+- CSS
+- Vite
+- React Hooks
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+## How to Run
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+1. Clone this repository.
+2. Open the project folder in your terminal.
+3. Install dependencies:
+
+   npm install
+
+4. Start the development server:
+
+   npm run dev
+
+5. Open the localhost URL in your browser.
+
+## Learning Outcomes
+
+- Understanding useState
+- Understanding useEffect
+- Managing component state
+- Working with localStorage
+- Handling keyboard events
+- Implementing cleanup functions
