@@ -55,7 +55,10 @@ function AdvancedCounter() {
             newCount
         ]);
     }
-
+    function reset() {
+        setCount(0);
+        setHistory([0]);
+    }
     return (
         <div>
             <h1>Advanced Counter</h1>
@@ -72,6 +75,7 @@ function AdvancedCounter() {
                 ))}
             </ul>
             <p>{saveStatus}</p>
+            <button onClick={reset}>Reset</button>
 
         </div>
     );
