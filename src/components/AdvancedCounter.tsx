@@ -2,35 +2,57 @@ import { useState } from "react";
 
 function AdvancedCounter() {
 
-  // Current counter value
-  const [count, setCount] = useState<number>(0);
+    // Current counter value
+    const [count, setCount] = useState<number>(0);
 
-  // Custom step value
-  const [step, setStep] = useState<number>(1);
+    // Store count history
+    const [history, setHistory] = useState<number[]>([0]);
 
+    // Custom step value
+    const [step, setStep] = useState<number>(1);
 
-  // Increase count
-function increment() {
-  setCount(count + step);
-}
+    // Save message
+    const [saveStatus, setSaveStatus] = useState<string>("Changes saved.");
 
-// Decrease count
-function decrement() {
-  setCount(count - step);
-}
+    // Increase count
+    function increment() {
+        const newCount = count + step;
+        setCount(newCount);
+        setHistory((previousHistory) => [
+            ...previousHistory,
+            newCount
+        ]);
+    }
 
-  return (
-    <div>
-      <h1>Advanced Counter</h1>
+        // Decrease count
+        function decrement() {
+            const newCount = count - step;
+            setCount(newCount);
 
-      <h2>Current Count: {count}</h2>
+            setHistory((previousHistory) => [
+                ...previousHistory,
+                newCount
+            ]);
+        }
 
-      <button onClick={decrement}>Decrement</button>
+        return (
+            <div>
+                <h1>Advanced Counter</h1>
 
-        <button onClick={increment}>Increment</button>
+                <h2>Current Count: {count}</h2>
 
-    </div>
-  );
-}
+                <button onClick={decrement}>Decrement</button>
 
-export default AdvancedCounter;
+                <button onClick={increment}>Increment</button>
+                <h3>Count History:</h3>
+                <ul>
+                {history.map((value, index) => (
+                    <li key={index}>{value}</li>
+                ))}
+                </ul>
+
+            </div>
+        );
+    }
+
+    export default AdvancedCounter;
