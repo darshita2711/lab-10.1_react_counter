@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 
 function AdvancedCounter() {
 
@@ -13,6 +13,18 @@ function AdvancedCounter() {
 
     // Save message
     const [saveStatus, setSaveStatus] = useState<string>("Changes saved.");
+
+    useEffect(() => {
+    const timer = setTimeout(() => {
+        localStorage.setItem("count", count.toString());
+        setSaveStatus("Changes saved.");
+    }, 500);
+
+    return () => {
+        clearTimeout(timer);
+    };
+
+    }, [count]);
 
     // Increase count
     function increment() {
@@ -50,6 +62,7 @@ function AdvancedCounter() {
                     <li key={index}>{value}</li>
                 ))}
                 </ul>
+                <p>{saveStatus}</p>
 
             </div>
         );
