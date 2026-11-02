@@ -76,6 +76,16 @@ function AdvancedCounter() {
             </ul>
             <p>{saveStatus}</p>
             <button onClick={reset}>Reset</button>
+        <div>
+        <label>Step Value: </label>
+
+        <input
+            type="number"
+            value={step}
+            min="1"
+            onChange={(event) => setStep(Number(event.target.value))}
+        />
+        </div>
 
         </div>
     );
