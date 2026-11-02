@@ -3,13 +3,14 @@ import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
+import AdvancedCounter from './components/AdvancedCounter'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (  
     <div>
-      <h1>Vite + React</h1>
+      <AdvancedCounter />
     </div>
   )
 }
